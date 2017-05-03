@@ -1,7 +1,7 @@
 import avoriaz, { mount } from 'avoriaz'
 import test from 'ava'
 import { compileToFunctions } from 'vue-template-compiler'
-import Vue from 'Vue'
+import Vue from 'vue'
 import addGlobals from '../index'
 import TestComponent from './components/TestComponent.vue'
 

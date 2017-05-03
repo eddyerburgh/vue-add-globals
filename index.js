@@ -1,8 +1,8 @@
-module.exports = function (options) {
+module.exports = function (globals) {
   return {
     install: function (Vue) {
-      Object.keys(options.methods).forEach(key => {
-        Vue.prototype[key] = options.methods[key]
+      Object.keys(globals).forEach(key => {
+        Vue.prototype[key] = globals[key]
       })
     }
   }

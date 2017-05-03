@@ -1,6 +1,6 @@
 # vue-add-globals
 
-Add globals to Vue. Use it in tests to mock global methods, directives and mixins.
+Add globals to Vue. Use it in tests to mock global methods and properties.
 
 ## Example
 
@@ -11,7 +11,8 @@ import Vue from 'vue'
 import Component from 'Component.vue'
 
 const mockedMethod = () => ({})
-Vue.use(addGlobal({ methods: { $mockedMethod: mockedMethod } }))
+const globals = addGlobal({ $mockedMethod: mockedMethod })
+Vue.use(globals)
 
 const Ctor = Vue.extend(Component)
 const vm = new Ctor().$mount()

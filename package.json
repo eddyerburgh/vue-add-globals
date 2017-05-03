@@ -1,7 +1,7 @@
 {
-  "name": "vue-add-instance-method",
+  "name": "vue-add-globals",
   "version": "1.0.0",
-  "description": "Add a vue instance method",
+  "description": "Add vue instance methods, directives, mixins and properties",
   "main": "index.js",
   "scripts": {
     "lint:fix": "standard --fix",
@@ -23,9 +23,9 @@
   "author": "Edd Yerburgh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eddyerburgh/vue-add-instance-method/issues"
+    "url": "https://github.com/eddyerburgh/vue-add-globals/issues"
   },
-  "homepage": "https://github.com/eddyerburgh/vue-add-instance-method#readme",
+  "homepage": "https://github.com/eddyerburgh/vue-add-globals#readme",
   "devDependencies": {
     "ava": "^0.19.1",
     "avoriaz": "^1.11.2",

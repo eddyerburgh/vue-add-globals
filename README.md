@@ -1,1 +1,1 @@
-# vue-add-instance-method
+# vue-add-globals

@@ -1,9 +1,16 @@
-import { mount } from 'avoriaz'
+import avoriaz, { mount } from 'avoriaz'
 import test from 'ava'
 import { compileToFunctions } from 'vue-template-compiler'
+import injectVue from '../index'
 
-test('renders a div with class bar', (t) => {
+test('adds instance method to vue', (t) => {
+  const $injectedMethod = () => 'string'
+  avoriaz.use(injectVue({
+    methods: {
+      $injectedMethod
+    }
+  }))
   const compiled = compileToFunctions('<div />')
   const wrapper = mount(compiled)
-  t.true(wrapper.is('div'))
+  t.is(wrapper.vm.$injectedMethod, $injectedMethod)
 })

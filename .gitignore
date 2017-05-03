@@ -21,4 +21,4 @@ pids
 *.pid.lock
 
 # Dependencies
-/node_modules
+node_modules/

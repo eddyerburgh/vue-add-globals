@@ -24,3 +24,16 @@ expect(vm.$mockedMethod).to.equal(mockedMethod)
 ```shell
 npm install --save-dev vue-add-globals
 ```
+
+## Usage
+
+* Import 'vue-add-globals'
+* Call it with object of global properties to add
+* Add the globals with Vue.use()
+
+```js
+import addGlobals from 'vue-add-globals'
+
+const globals = addGlobals({ $mockedMethod: mockedMethod })
+Vue.use(globals) // $mockedMethod is now available globally as an instance method
+```

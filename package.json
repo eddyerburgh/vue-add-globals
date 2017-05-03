@@ -1,0 +1,36 @@
+{
+  "name": "vue-add-instance-method",
+  "version": "1.0.0",
+  "description": "Add a vue instance method",
+  "main": "index.js",
+  "scripts": {
+    "lint:fix": "standard --fix",
+    "test": "npm run lint:fix && npm run test:unit",
+    "test:unit": "ava test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eddyerburgh/vue-add-instance-method.git"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "ava": {
+    "require": [
+      "./test/helpers/setup.js"
+    ]
+  },
+  "author": "Edd Yerburgh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eddyerburgh/vue-add-instance-method/issues"
+  },
+  "homepage": "https://github.com/eddyerburgh/vue-add-instance-method#readme",
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "avoriaz": "^1.11.2",
+    "browser-env": "^2.0.31",
+    "standard": "^10.0.2",
+    "vue-template-compiler": "^2.3.2"
+  }
+}

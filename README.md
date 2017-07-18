@@ -4,19 +4,23 @@ Add globals to Vue. Use it in tests to mock global methods and properties.
 
 ## Example
 
-Adding an instance method
+Adding a property and method to Vue
+
 ```js
 import addGlobals from 'vue-add-globals'
 import Vue from 'vue'
-import TestComponent from 'TestComponent.vue'
 
-const mockedMethod = () => ({})
-const globals = addGlobals({ $mockedMethod: mockedMethod })
-Vue.use(globals)
-
+const $someMethod = () => ({})
+const someProp = 'prop'
+addGlobals(Vue, {
+  $someMethod: $someMethod,
+  someProp: someProp
+})
 const Ctor = Vue.extend(TestComponent)
 const vm = new Ctor().$mount()
-expect(vm.$mockedMethod).to.equal(mockedMethod)
+
+t.is(vm.$someMethod, $someMethod)
+t.is(vm.someProp, someProp)
 ```
 
 ## Installation
@@ -29,11 +33,20 @@ npm install --save-dev vue-add-globals
 
 * Import 'vue-add-globals'
 * Call it with object of global properties to add
-* Add the globals with Vue.use()
 
 ```js
 import addGlobals from 'vue-add-globals'
 
-const globals = addGlobals({ $mockedMethod: mockedMethod })
-Vue.use(globals) // $mockedMethod is now available globally as an instance method
+addGlobals(Vue, { $mockedMethod: mockedMethod })
+```
+
+You can keep the global Vue class clean by using `Vue.extend()`:
+
+```js
+import addGlobals from 'vue-add-globals'
+import Vue from 'vue'
+
+const freshVue = Vue.extend()
+
+addGlobals(freshVue, { $mockedMethod: mockedMethod })
 ```

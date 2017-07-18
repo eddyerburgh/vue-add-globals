@@ -1,4 +1,3 @@
-import avoriaz, { mount } from 'avoriaz'
 import test from 'ava'
 import { compileToFunctions } from 'vue-template-compiler'
 import Vue from 'vue'
@@ -7,33 +6,41 @@ import TestComponent from './components/TestComponent.vue'
 
 test('adds instance method to vue', (t) => {
   const $injectedMethod = () => 'string'
-  avoriaz.use(addGlobals({
+  const freshVue = Vue.extend()
+  addGlobals(Vue, {
     $injectedMethod
-  }))
-  const compiled = compileToFunctions('<div />')
-  const wrapper = mount(compiled)
-  t.is(wrapper.vm.$injectedMethod, $injectedMethod)
+  })
+  const Ctor = freshVue.extend(compileToFunctions('<div />'))
+  const vm = new Ctor().$mount()
+
+  t.is(vm.$injectedMethod, $injectedMethod)
 })
 
-test('adds multiple instance method to vue', (t) => {
+test('adds multiple instance props to vue', (t) => {
+  const aProperty = 1
   const $injectedMethod = () => 'string'
-  const $anotherMethod = () => 1
-  avoriaz.use(addGlobals({
+  const freshVue = Vue.extend()
+  addGlobals(Vue, {
     $injectedMethod,
-    $anotherMethod
-  }))
-  const compiled = compileToFunctions('<div />')
-  const wrapper = mount(compiled)
-  t.is(wrapper.vm.$injectedMethod, $injectedMethod)
-  t.is(wrapper.vm.$anotherMethod, $anotherMethod)
+    aProperty
+  })
+  const Ctor = freshVue.extend(compileToFunctions('<div />'))
+  const vm = new Ctor().$mount()
+
+  t.is(vm.$injectedMethod, $injectedMethod)
+  t.is(vm.aProperty, aProperty)
 })
 
 test('adds instance properties to Vue, using README example', (t) => {
-  const mockedMethod = () => ({})
-  const globals = addGlobals({ $mockedMethod: mockedMethod })
-  Vue.use(globals)
-
+  const $someMethod = () => ({})
+  const someProp = 'prop'
+  addGlobals(Vue, {
+    $someMethod: $someMethod,
+    someProp: someProp
+  })
   const Ctor = Vue.extend(TestComponent)
   const vm = new Ctor().$mount()
-  t.is(vm.$mockedMethod, mockedMethod)
+
+  t.is(vm.$someMethod, $someMethod)
+  t.is(vm.someProp, someProp)
 })

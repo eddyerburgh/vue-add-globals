@@ -1,6 +1,6 @@
 {
   "name": "vue-add-globals",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Add vue instance methods, directives, mixins and properties",
   "main": "index.js",
   "scripts": {
